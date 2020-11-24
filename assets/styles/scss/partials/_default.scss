@@ -1,0 +1,327 @@
+/* Media Queries */
+
+@mixin media-max-420px {
+  @media (max-width: 419px) { @content; }
+}
+@mixin media-max-576px {
+  @media (max-width: 575px) { @content; }
+}
+@mixin media-max-768px {
+  @media (max-width: 767px) { @content; }
+}
+@mixin media-max-992px {
+  @media (max-width: 991px) { @content; }
+}
+@mixin media-max-1200px{
+  @media (max-width: 1199px) { @content; }
+}
+@mixin media-min-420px {
+  @media (min-width: 420px) { @content; }
+}
+@mixin media-min-576px {
+  @media (min-width: 576px) { @content; }
+}
+@mixin media-min-768px {
+  @media (min-width: 768px) { @content; }
+}
+@mixin media-min-992px {
+  @media (min-width: 992px) { @content; }
+}
+@mixin media-min-1200px {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin media-min-1800px {
+  @media (min-width: 1800px) { @content; }
+}
+@mixin media-portrait {
+    @media (orientation: portrait) { @content; }
+}
+@mixin media-landscape {
+    @media (orientation: landscape) { @content; }
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 200;
+    font-style: normal;
+    src: url('../fonts/Poppins-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 200;
+    font-style: italic;
+    src: url('../fonts/Poppins-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-style: normal;
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-style: italic;
+    src: url('../fonts/Poppins-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-style: normal;
+    src: url('../fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-style: italic;
+    src: url('../fonts/Poppins-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-style: normal;
+    src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-style: italic;
+    src: url('../fonts/Poppins-SemiBoldItalic.ttf') format('truetype');
+}
+
+/* Reset browser input arrow design */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number],input[type=date] {
+  -moz-appearance: textfield;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: none!important;
+}
+
+.bootstrap-select .btn:focus {
+    outline: none !important;
+}
+
+:focus {
+  outline: none!important;
+}
+
+/* Mixins and variables */
+
+@mixin transition-mixin($key, $time, $type) {
+    -moz-transition: $key $time $type;
+    -webkit-transition: $key $time $type;
+    -o-transition: $key $time $type;
+    transition: $key $time $type; 
+}
+
+$theme-main-color: #404857;
+
+%center-align {text-align: center}
+%full-width  {width:  100%;}
+%full-height {height: 100%;}
+%vp-full-height {
+    @include media-max-992px {
+        min-height: 100vmax; 
+    }
+    @include media-min-992px {
+        min-height: 100vh;
+    }
+}
+%auto-width  {width:  auto;}
+%auto-height {height: auto;}
+%auto-margin {display: block; margin: 0 auto;}
+%no-display  {display: none;}
+%bl-display  {display: block;}
+%no-left-margin {margin-left: 0;}
+
+/* Default properties */
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    @include transition-mixin(all, 0.5s, ease);
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f5f9;
+    color: $theme-main-color;
+}
+
+body {
+    position: relative;
+    &.modal-open {
+        padding-right: 0 !important;
+    }
+}
+
+.d-flex {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.visible-md {@include media-max-768px  {display: none !important;}}
+.visible-lg {@include media-max-992px  {display: none !important;}}
+.hidden-md  {@include media-min-768px  {display: none !important;}}
+.hidden-lg  {@include media-min-992px  {display: none !important;}}
+
+header {
+    position: relative;
+
+    aside {
+        &.language-switch {
+            position: absolute;
+            //display: flex;
+            display: none;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            top: 0.5rem;
+            right: 2rem;
+            width: 80px;
+            a {
+                display: block;
+                width: 35px;
+            }
+            img {
+                &.banner {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    position: relative;
+    @include media-max-992px {
+        padding-bottom: 100px !important;
+    }
+}
+
+ul {
+    list-style: none !important;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 35px;
+    @include media-max-992px {
+        text-align: center;
+        font-size: 2.2rem;
+    }
+    @include media-max-768px {
+        font-size: 1.8rem;
+    }
+    @include media-max-576px {
+        font-size: 1.2rem;
+    }
+    &.col-12 {
+        @include media-min-992px {
+            padding-left: 0;
+        }        
+    }
+}
+
+h2 {
+    font-weight: 600; 
+    font-size: 40px;
+    @include media-max-1200px {
+        font-size: 35px;
+    }
+    @include media-max-992px {
+        text-align: center;
+    }
+    @include media-max-420px {
+        font-size: 25px;
+    }
+}
+
+h3 {
+    font-weight: 200;
+    font-size: 2.2rem;
+    @extend %center-align;
+}
+
+p {
+    font-weight: 200;
+    font-size: 1.8rem;
+    @include media-max-1200px {
+        font-size: 1.5rem;
+    }
+    @include media-max-992px {
+        text-align: center;
+    }
+    @include media-max-768px {
+        font-size: 1.5rem;
+    }
+    @include media-max-576px {
+        font-size: 1rem
+    }
+}
+
+a {
+    color: $theme-main-color;
+    &:hover, &:focus {
+        color: $theme-main-color;
+    }
+    &.btn {
+        cursor: pointer;
+        &:hover, &:focus {
+            outline: none;
+        }
+    }
+}
+
+figure {
+    &.happy-media-data {
+        position: absolute;
+        width: 200px;
+        right: 15px;
+        bottom: 20px;
+        figcaption {
+            float: left;
+            text-align: right;
+            width: calc(100% - 90px);
+            line-height: 1.3rem;
+            color: #939393;
+        }
+        a {
+            display: block;
+            max-width: 100%;
+            img {
+                float: right;
+                width: 70px;
+                height: auto;
+            }
+        }
+        @include media-max-992px {
+            right: calc(50% - 100px);
+        }        
+    }
+}
+.terms-page {
+    figure {
+        &.happy-media-data {
+            right: 0;
+            bottom: 0;
+            @include media-max-992px {
+                right: calc(50% - 100px);
+            } 
+        }
+    }
+}
